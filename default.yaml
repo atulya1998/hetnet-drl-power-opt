@@ -1,0 +1,70 @@
+network:
+  n_ue: 30
+  n_sbs: 9
+  n_mbs: 1
+  mbs_coverage: 500
+  bh_link_range_min: 150
+  bh_link_range_max: 200
+  n_clusters: 4
+  bandwidth_an: 20e6
+  bandwidth_bh: 200e6
+  n_prb: 100
+  carrier_freq: 2e9
+
+power_model:
+  T_AN_X_mbs: 8
+  T_AN_X_sbs: 8
+  T_AN_max_mbs: 130.0
+  T_AN_max_sbs: 1.0
+  p_AN_o_mbs: 130.0
+  p_AN_o_sbs: 6.8
+  delta_AN_mbs: 4.7
+  delta_AN_sbs: 4.0
+  T_BH_X: 8
+  p_BH_o: 3.9
+  delta_BH: 0.0631
+  Gamma_max: 100
+  G_rx_vband: 36
+  G_rx_eband: 43
+  L_rx: 5.0
+  N_f: 30.0
+  L_M: 15.0
+  T_n: -174.0
+  EIRP_max: 85.0
+
+ue_distribution:
+  random_fraction: 0.667
+  uniform_fraction: 0.333
+  gbr_300mbps_fraction: 0.10
+  gbr_200mbps_fraction: 0.20
+  gbr_100mbps_fraction: 0.70
+
+training:
+  algorithm: ddpg
+  episodes: 1000
+  max_steps: 200
+  batch_size: 64
+  lr_actor: 0.0001
+  lr_critic: 0.001
+  gamma: 0.99
+  tau: 0.005
+  buffer_size: 100000
+  noise_std_init: 0.1
+  noise_std_min: 0.01
+  noise_decay: 0.995
+  explore_fraction: 0.8
+  hidden_dim: 256
+  seed: 42
+
+reward:
+  lambda1: 0.50
+  lambda2: 1.00
+  lambda3: 0.80
+  lambda4: 0.60
+  P_ref: 5000.0
+
+logging:
+  log_interval: 50
+  save_interval: 100
+  results_dir: results/
+  tensorboard: true
